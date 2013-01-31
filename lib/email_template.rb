@@ -42,15 +42,33 @@ module EmailTemplate
           possible_attrs << obj(current_class.from(1))
         else
           const_obj = current_class.camelize.constantize
-
-          possible_attrs += const_obj.attributes.map(&:first).map { |resource_column| obj(current_class, resource_column)} if
-              const_obj.respond_to?(:attributes)
-          const_obj.columns.each { |resource_column| (possible_attrs << obj(current_class, resource_column.name)) unless resource_column.name =~ /#{column_pattern}/ } if
-              const_obj.respond_to?(:columns)
-          const_obj.public_instance_methods.select { |m_alias| (possible_attrs << obj(current_class, m_alias.to_s.from(3))) if m_alias.to_s.start_with?("___") }
+          [:find_attributes, :find_columns, :find_methods].each do |method|
+            possible_attrs += self.send(method, current_class, const_obj)
+          end
         end
       end
       possible_attrs.uniq
+    end
+
+  protected
+    def find_attributes(classname, object)
+      if object.respond_to?(:attributes)
+        object.attributes.map { |attr| obj(classname, attr.first)}
+      end || []
+    end
+
+    def find_columns(classname, object)
+      if object.respond_to?(:columns)
+        object.columns.each_with_object([]) do |column, ret|
+          (ret << obj(classname, column.name)) unless column.name =~ /#{column_pattern}/
+        end
+      end || []
+    end
+
+    def find_methods(classname, object)
+      object.public_instance_methods.each_with_object([]) do |m_alias, ret|
+        ( ret << object(classname, m_alias.to_s.from(3))) if m_alias.to_s.start_with?("___")
+      end
     end
 
   private
