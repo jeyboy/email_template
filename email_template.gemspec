@@ -3,9 +3,9 @@ require File.expand_path('../lib/email_template/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Jenua Boiko"]
-  gem.email         = ["jeyboy@bigmir.net"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.email         = ["jeyboy1985@gmail.com"]
+  gem.description   = "Emails templating"
+  gem.summary       = ""
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
