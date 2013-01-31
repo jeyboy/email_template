@@ -4,8 +4,8 @@ require File.expand_path('../lib/email_template/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Jenua Boiko"]
   gem.email         = ["jeyboy1985@gmail.com"]
-  gem.description   = "Emails templating"
-  gem.summary       = ""
+  gem.description   = %Q{Emails templating}
+  gem.summary       = %Q{Emails templating}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
@@ -14,4 +14,8 @@ Gem::Specification.new do |gem|
   gem.name          = "email_template"
   gem.require_paths = ["lib"]
   gem.version       = EmailTemplate::VERSION
+  gem.rubygems_version = %q{1.8.6}
+
+  gem.add_dependency("rails", ">= 3.0.0")
 end
+
