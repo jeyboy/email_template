@@ -19,7 +19,7 @@ module EmailTemplate
         STDOUT << "config"
         template "templates/email_templates.rb", "config/initializers/email_template.rb"
 
-        if (Specification::find_by_name('activeadmin') rescue nil)
+        if Gem::Specification::find_all_by_name('activeadmin').any?
           STDOUT << "admin"
           template "templates/active_admin/emails.rb", "app/admin/emails.rb"
         end

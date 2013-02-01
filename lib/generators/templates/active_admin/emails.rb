@@ -9,10 +9,12 @@ ActiveAdmin.register EmailTemplate do
     a email_template.name.humanize, href: admin_email_template_path(email_template)
   end
 
-  show do
+  show do |email_template|
     attributes_table do
       row :subject
-      row :body
+      row :body do
+        raw email_template.body
+      end
     end
   end
 

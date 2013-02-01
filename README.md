@@ -19,10 +19,10 @@ Or install it yourself as:
 ## Usage
 
 Run installer:
-    rails g email_template:install
+    $ rails g email_template:install
 
 Run:
-    rake db:migrate
+    $ rake db:migrate
 
 Config token lists in config/initializers/email_template.rb
 
