@@ -1,4 +1,4 @@
-require "email_template"
+require "lib/email_template"
 
 class MailTemplate < ActiveRecord::Base
   include EmailTemplate
