@@ -1,7 +1,3 @@
-#unless defined?(MailTemplate)
-#  class MailTemplate < ActiveRecord::Base; end
-#end
-
 require "email_template/j_models"
 include JModels
 

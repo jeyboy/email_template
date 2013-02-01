@@ -2,6 +2,9 @@ module JModels
   class MailTemplate < ActiveRecord::Base
     include EmailTemplate
     include ActionView::Helpers::SanitizeHelper
+
+    self.table_name = 'email_templates'
+
     attr_accessor :prepared
 
     attr_accessible :name, :body, :subject, :classes
@@ -60,7 +63,7 @@ module JModels
 
     def find_methods(classname, object)
       object.public_instance_methods.each_with_object([]) do |m_alias, ret|
-        ( ret << object(classname, m_alias.to_s.from(3))) if m_alias.to_s.start_with?("et_")
+        ( ret << obj(classname, m_alias.to_s.from(3))) if m_alias.to_s.start_with?("et_")
       end
     end
 
