@@ -1,6 +1,9 @@
-require "email_template/version"
+require "email-template/version"
+require "email_template/j_models"
 
 module EmailTemplate
+  include JModels
+
   mattr_accessor :columns_black_list
   @@columns_black_list = []
 

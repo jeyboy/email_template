@@ -2,6 +2,9 @@
 #  class MailTemplate < ActiveRecord::Base; end
 #end
 
+require "email_template/j_models"
+include JModels
+
 ActiveAdmin.register MailTemplate do
   config.sort_order = "name_asc"
 
