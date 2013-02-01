@@ -1,6 +1,6 @@
 class AddMailsTemplate < ActiveRecord::Migration
   def self.up
-    create_table :mail_templates do |t|
+    create_table :email_templates do |t|
       t.string :name
       t.string :subject
       t.text :body
