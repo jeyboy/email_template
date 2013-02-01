@@ -11,9 +11,9 @@ module EmailTemplate
       class_option :orm
 
       def copy_initializer
-        unless migration_exists?("AddMailerTemplate")
+        unless migration_exists?("add_mails_template")
           STDOUT << "migration"
-          template "active_record/migration.rb", "db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S").to_i}_AddMailerTemplate.rb"
+          template "active_record/migration.rb", "db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S").to_i}_add_mails_template.rb"
         end
 
         STDOUT << "config"
