@@ -1,4 +1,4 @@
-require "install_helpers"
+require 'generators/email_template/install_helpers'
 
 module EmailTemplate
   module Generators
