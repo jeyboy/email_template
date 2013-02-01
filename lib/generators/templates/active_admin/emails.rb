@@ -1,4 +1,4 @@
-ActiveAdmin.register EmailTemplate do
+ActiveAdmin.register MailTemplate do
   config.sort_order = "name_asc"
 
   filter :subject, as: :select, collection: proc { EmailTemplate.all.map(&:subject) }
