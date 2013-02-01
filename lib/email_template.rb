@@ -7,6 +7,10 @@ module EmailTemplate
   mattr_accessor :attributes_black_list
   @@attributes_black_list = []
 
+  def self.setup
+    yield self
+  end
+
   class MailTemplate < ActiveRecord::Base
     include ActionView::Helpers::SanitizeHelper
     attr_accessor :prepared
