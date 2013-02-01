@@ -1,12 +1,16 @@
+#unless defined?(MailTemplate)
+#  class MailTemplate < ActiveRecord::Base; end
+#end
+
 ActiveAdmin.register MailTemplate do
   config.sort_order = "name_asc"
 
-  filter :subject, as: :select, collection: proc { EmailTemplate.all.map(&:subject) }
+  filter :subject, as: :select, collection: proc { MailTemplate.all.map(&:subject) }
 
   actions :all, :except => [:destroy, :new]
 
   index as: :grid do |email_template|
-    a email_template.name.humanize, href: admin_email_template_path(email_template)
+    a email_template.name.humanize, href: admin_mail_template_path(email_template)
   end
 
   show do |email_template|
