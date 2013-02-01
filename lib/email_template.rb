@@ -71,7 +71,7 @@ module EmailTemplate
 
     def find_methods(classname, object)
       object.public_instance_methods.each_with_object([]) do |m_alias, ret|
-        ( ret << object(classname, m_alias.to_s.from(3))) if m_alias.to_s.start_with?("___")
+        ( ret << object(classname, m_alias.to_s.from(3))) if m_alias.to_s.start_with?("et_")
       end
     end
 
