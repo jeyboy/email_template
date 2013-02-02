@@ -31,7 +31,8 @@ module JModels
     end
 
     def prepare_fields
-      self.classes.each_with_object([]) do |resource_class, possible_attrs|
+      possible_attrs = []
+      self.classes.each do |resource_class|
         current_class = resource_class.downcase.match(/\w*/mix).to_a.first
         if (current_class[0] == '_')
           possible_attrs << obj(current_class.from(1))
@@ -41,7 +42,8 @@ module JModels
             possible_attrs += self.send(method, current_class, const_obj)
           end
         end
-      end.uniq
+      end
+      possible_attrs.uniq
     end
 
     protected
