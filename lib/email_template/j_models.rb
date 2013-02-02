@@ -76,8 +76,8 @@ module JModels
       @attr_pattern ||= "(" + attributes_black_list.join(")|(") + ")"
     end
 
-    def obj(clas, name = "")
-      "\#{#{[clas, name].join('.')}}"
+    def obj(clas, name = nil)
+      "\#{#{[clas, name].compact.join('.')}}"
     end
   end
 end
