@@ -47,33 +47,49 @@ module JModels
     end
 
     protected
+    def finder(classname, items, val, current_pattern)
+      items.each_with_object([]) do |attr, ret|
+        (ret << obj(classname, attr.send(val))) if ((attr.send(val) =~ /#{current_pattern}/).nil? || current_pattern.nil?)
+      end
+    end
+
     def find_attributes(classname, object)
       if object.respond_to?(:attributes)
-        object.attributes.map { |attr| obj(classname, attr.first)}
+        finder(classname, object.attributes, :first, attr_pattern(classname))
       end || []
     end
 
     def find_columns(classname, object)
       if object.respond_to?(:columns)
-        object.columns.each_with_object([]) do |column, ret|
-          (ret << obj(classname, column.name)) unless column.name =~ /#{column_pattern}/
-        end
+        finder(classname, object.columns, :name, column_pattern(classname))
       end || []
     end
 
     def find_methods(classname, object)
       object.public_instance_methods.each_with_object([]) do |m_alias, ret|
-        ( ret << obj(classname, m_alias.to_s.from(3))) if m_alias.to_s.start_with?("et_")
+        (ret << obj(classname, m_alias.to_s.from(3))) if m_alias.to_s.start_with?("et_")
       end
     end
 
     private
-    def column_pattern
-      @column_pattern ||= "(" + columns_black_list.join(")|(") + ")"
+    def regex_from_list(list)
+      list.blank? ? nil : "(" + list.join(")|(") + ")"
     end
 
-    def attr_pattern
-      @attr_pattern ||= "(" + attributes_black_list.join(")|(") + ")"
+    def regex_from_hash(hash, object)
+      regex_from_list(hash[object] || hash['*'] || [])
+    end
+
+    def pattern(elems, object)
+      elems.is_a?(Array) ? regex_from_list(elems) : regex_from_hash(elems, object)
+    end
+
+    def column_pattern(object)
+      pattern(columns_black_list, object)
+    end
+
+    def attr_pattern(object)
+      pattern(attributes_black_list, object)
     end
 
     def obj(clas, name = nil)

@@ -11,6 +11,9 @@ module EmailTemplate
   mattr_accessor :attributes_black_list
   @@attributes_black_list = []
 
+  mattr_accessor :methods_header
+  @@methods_header = "et_"
+
   def self.setup
     yield self
   end
