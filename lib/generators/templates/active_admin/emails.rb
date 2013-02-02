@@ -1,10 +1,7 @@
-require "email_template/j_models"
-include JModels
-
-ActiveAdmin.register MailTemplate, :as => "MailTemplate" do
+ActiveAdmin.register JModels::MailTemplate, :as => "MailTemplate" do
   config.sort_order = "name_asc"
 
-  filter :subject, as: :select, collection: proc { MailTemplate.all.map(&:subject) }
+  filter :subject, as: :select, collection: proc { JModels::MailTemplate.all.map(&:subject) }
 
   actions :all, :except => [:destroy, :new]
 
