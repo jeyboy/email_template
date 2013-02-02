@@ -7,7 +7,7 @@ module JMailers
 
     protected
     def check_template(template_name)
-      throw "#{template_name} not set" if (@template = EmailTemplate.where(name: template_name).first).blank?
+      throw "#{template_name} not set" if (@template = MailTemplate.where(name: template_name).first).blank?
     end
 
     def mailing(email, attrs={})

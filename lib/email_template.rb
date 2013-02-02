@@ -1,5 +1,6 @@
 require "email-template/version"
 require "email_template/j_models"
+require "email_template/j_mailers"
 
 module EmailTemplate
   include JModels
