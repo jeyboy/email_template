@@ -1,4 +1,4 @@
-ActiveAdmin.register JModels::MailTemplate, :as => "MailTemplate" do
+ActiveAdmin.register JModels::MailTemplate, :as => "Mail Template" do
   config.sort_order = "name_asc"
 
   filter :subject, as: :select, collection: proc { JModels::MailTemplate.all.map(&:subject) }
