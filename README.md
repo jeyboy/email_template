@@ -52,6 +52,8 @@ In Mailer:
       end
     end
 
+## Customization
+
 In case when you need additional customization :
 
 In Mailer:
