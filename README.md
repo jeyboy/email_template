@@ -45,13 +45,31 @@ Pull template to the base :
 
 In Mailer:
 
-    class ActivityPartnerMailer < JMailers::TemplateSendMailer
+    class ActivityPartnerMailer < TemplateSendMailer
       def join_confirmation_self(activity_partner)
-        #send_mail(template_name, mails, classes_params_hash)
-        send_mail("activity_partner_mailer:#{__method__}", "info@petitevillage.com", :activity_partner => activity_partner)
+        #send_mail(template_name, mail_params = {}, template_params = {})
+        send_mail("#{self.class.name.tableize.singularize}:#{__method__}", {to: "info@petitevillage.com"}, {:activity_partner_join => activity_partner})
       end
     end
 
+In case when you need additional customization :
+
+In Mailer:
+    
+    class CustomDeviseMailer < Devise::Mailer
+      include Devise::Mailers::Helpers
+      include EmailTemplate::Mailers::Helpers
+    
+      def confirmation_instructions(record, opts={})
+        @template = check_template("#{record.class.name.tableize.singularize}_mailer:#{__method__}")
+        devise_mail(record, :confirmation_instructions, opts.merge(subject: @template.subject))
+      end
+    end    
+    
+In View:
+
+    = raw(@template.as_html(:parent => @resource).gsub(/\#\{confirm_link\}/,
+    link_to('Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token))))
 
 ## Contributing
 
