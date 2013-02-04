@@ -24,12 +24,12 @@ Run installer:
 Run:
     $ rake db:migrate
 
-Config token lists in config/initializers/email_template.rb
+Config token lists in 
+    config/initializers/email_template.rb
 
 Pull template to the base :
 
-Example:
-MailTemplate.create(name: "activity_partner_mailer:join_confirmation_self",
+    MailTemplate.create(name: "activity_partner_mailer:join_confirmation_self",
                         subject: "Join request confirmation",
                         classes: ["activity_partner"],
                         body:
@@ -41,13 +41,12 @@ MailTemplate.create(name: "activity_partner_mailer:join_confirmation_self",
 
 In Mailer:
 
-# Example
-class ActivityPartnerMailer < JMailers::TemplateSendMailer
-  def join_confirmation_self(activity_partner)
-    #send_mail(template_name, mails, classes_params_hash)
-    send_mail("activity_partner_mailer:#{__method__}", "info@petitevillage.com", :activity_partner => activity_partner)
-  end
-end
+    class ActivityPartnerMailer < JMailers::TemplateSendMailer
+      def join_confirmation_self(activity_partner)
+        #send_mail(template_name, mails, classes_params_hash)
+        send_mail("activity_partner_mailer:#{__method__}", "info@petitevillage.com", :activity_partner => activity_partner)
+      end
+    end
 
 
 ## Contributing
