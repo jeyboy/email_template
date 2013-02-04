@@ -2,9 +2,10 @@ require "email-template/version"
 require "email_template/j_models"
 require "email_template/j_mailers"
 
-module EmailTemplate
-  include JModels
+include JModels
+include JMailers
 
+module EmailTemplate
   mattr_accessor :columns_black_list
   @@columns_black_list = []
 
