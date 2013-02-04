@@ -1,6 +1,7 @@
 # EmailTemplate
 
-TODO: Write a gem description
+Gem allows to develop e-mail templates with the ability of their following reduction using the tags
+related to template`s objects. One of the reduction abilities is active admin.
 
 ## Installation
 
@@ -19,12 +20,15 @@ Or install it yourself as:
 ## Usage
 
 Run installer:
+
     $ rails g email_template:install
 
 Run:
+
     $ rake db:migrate
 
 Config token lists in 
+
     config/initializers/email_template.rb
 
 Pull template to the base :
