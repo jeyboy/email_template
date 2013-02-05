@@ -36,7 +36,7 @@ Config common settings in
         
         attributes_black_list - present list of filters for object attributes.
         
-        methods_header - this option to enable filter on functions of the objects that will be shown in the editor.
+        methods_header - this option is enable filter on functions of the objects that will be shown in the editor.
         That mean what if we set value 'et_' at methods_header - methods which starts with this value 
         automatically will be added to possible template list of constants.
         For example: if object have next methods or aliases: 'et_month', 'get_month', 'set_year' - 
