@@ -48,7 +48,7 @@ In Mailer:
     class ActivityPartnerMailer < TemplateSendMailer
       def join_confirmation_self(activity_partner)
         #send_mail(template_name, mail_params = {}, template_params = {})
-        send_mail("#{self.class.name.tableize.singularize}:#{__method__}", {to: "info@petitevillage.com"}, {:activity_partner_join => activity_partner})
+        send_mail("#{self.class.name.tableize.singularize}:#{__method__}", {to: "user@example.com"}, {activity_partner_join: activity_partner})
       end
     end
 
@@ -71,7 +71,7 @@ In Mailer:
 In View:
 
     = raw(@template.as_html(:parent => @resource).gsub(/\#\{confirm_link\}/,
-    link_to('Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token))))
+    link_to('Confirm my account', confirmation_url(@resource, confirmation_token: @resource.confirmation_token))))
 
 ## Contributing
 
