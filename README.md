@@ -1,6 +1,7 @@
 # EmailTemplate
 
-TODO: Write a gem description
+Gem allows to develop e-mail templates with the ability of their following reduction using the tags
+related to template`s objects. One of the reduction abilities is active admin.
 
 ## Installation
 
@@ -19,17 +20,20 @@ Or install it yourself as:
 ## Usage
 
 Run installer:
+
     $ rails g email_template:install
 
 Run:
+
     $ rake db:migrate
 
-Config token lists in config/initializers/email_template.rb
+Config token lists in 
+
+    config/initializers/email_template.rb
 
 Pull template to the base :
 
-Example:
-MailTemplate.create(name: "activity_partner_mailer:join_confirmation_self",
+    MailTemplate.create(name: "activity_partner_mailer:join_confirmation_self",
                         subject: "Join request confirmation",
                         classes: ["activity_partner"],
                         body:
@@ -41,14 +45,33 @@ MailTemplate.create(name: "activity_partner_mailer:join_confirmation_self",
 
 In Mailer:
 
-# Example
-class ActivityPartnerMailer < JMailers::TemplateSendMailer
-  def join_confirmation_self(activity_partner)
-    #send_mail(template_name, mails, classes_params_hash)
-    send_mail("activity_partner_mailer:#{__method__}", "info@petitevillage.com", :activity_partner => activity_partner)
-  end
-end
+    class ActivityPartnerMailer < TemplateSendMailer
+      def join_confirmation_self(activity_partner)
+        #send_mail(template_name, mail_params = {}, template_params = {})
+        send_mail("#{self.class.name.tableize.singularize}:#{__method__}", {to: "info@petitevillage.com"}, {:activity_partner_join => activity_partner})
+      end
+    end
 
+## Customization
+
+In case when you need additional customization :
+
+In Mailer:
+    
+    class CustomDeviseMailer < Devise::Mailer
+      include Devise::Mailers::Helpers
+      include EmailTemplate::Mailers::Helpers
+    
+      def confirmation_instructions(record, opts={})
+        @template = check_template("#{record.class.name.tableize.singularize}_mailer:#{__method__}")
+        devise_mail(record, :confirmation_instructions, opts.merge(subject: @template.subject))
+      end
+    end    
+    
+In View:
+
+    = raw(@template.as_html(:parent => @resource).gsub(/\#\{confirm_link\}/,
+    link_to('Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token))))
 
 ## Contributing
 
