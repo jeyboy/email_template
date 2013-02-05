@@ -27,9 +27,20 @@ Run:
 
     $ rake db:migrate
 
-Config token lists in 
+Config common settings in 
 
     config/initializers/email_template.rb
+    
+    Settings includes next items:
+        columns_black_list - present list of filters for column names of table, that linked to the object, used in template.
+        
+        attributes_black_list - present list of filters for object attributes.
+        
+        methods_header - this option to enable filter on functions of the objects that will be shown in the editor.
+        That mean what if we set value 'et_' at methods_header - methods which starts with this value 
+        automatically will be added to possible template list of constants.
+        For example: if object have next methods or aliases: 'et_month', 'get_month', 'set_year' - 
+        filter will return only 'et_month' method.
 
 Pull template to the base :
 
