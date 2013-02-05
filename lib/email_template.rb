@@ -13,13 +13,17 @@ module EmailTemplate
   #end
 
   mattr_accessor :columns_black_list
-  @@columns_black_list = []
-
+  self.columns_black_list = []
   mattr_accessor :attributes_black_list
-  @@attributes_black_list = []
-
+  self.attributes_black_list = []
   mattr_accessor :methods_header
-  @@methods_header = "et_"
+  self.methods_header = "et_"
+
+  def self.included(base)
+    self.columns_black_list = []
+    self.attributes_black_list = []
+    self.methods_header = "et_"
+  end
 
   def self.setup
     yield self
