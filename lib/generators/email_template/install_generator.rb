@@ -21,7 +21,7 @@ module EmailTemplate
 
         if Gem::Specification::find_all_by_name('activeadmin').any?
           STDOUT << "admin"
-          template "templates/active_admin/emails.rb", "app/admin/emails.rb"
+          template "templates/active_admin/emails.rb", "app/admin/email_templates.rb"
         end
 
         if Gem::Specification::find_all_by_name('devise').any?

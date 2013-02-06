@@ -3,7 +3,6 @@ module EmailTemplate
     module Helpers
 
     protected
-
       def check_template(template_name)
         throw "#{template_name} not set" if (@template = MailTemplate.where(name: template_name).first).blank?
         @template
@@ -20,6 +19,10 @@ module EmailTemplate
             format.html { render :text => template.as_html(template_params) }
           end
         end
+      end
+
+      def obj_class_name(obj)
+        obj.class.name.tableize.singularize
       end
 
 

@@ -6,11 +6,7 @@ module Linkable
 
     def sending(record, action, template_name, opts)
       send_mail(record, action, template_name, opts,
-                {record_name(record).to_sym => record})
-    end
-
-    def record_name(record)
-      record.class.name.tableize.singularize
+                {obj_class_name(record).to_sym => record})
     end
   end
 end
