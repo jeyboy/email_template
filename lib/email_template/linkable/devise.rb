@@ -1,6 +1,8 @@
 module Linkable
   module DeviseMailer
     class DeviseTemplateSendMailer < Devise::Mailer
+      require "email_template/linkable/devise_helper"
+      include Linkable::DeviseMailerHelper
       include ActionView::Helpers::UrlHelper
       include Devise::Mailers::Helpers
 
@@ -29,11 +31,6 @@ module Linkable
             template_params.except(:*)
         )
       end
-
-      private
-        def link_head(record)
-          "#{ActionMailer::Base.default_url_options[:host]}/#{record.class.name.tableize.singularize}"
-        end
     end
   end
 end
