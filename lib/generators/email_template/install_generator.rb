@@ -23,12 +23,11 @@ module EmailTemplate
           STDOUT << "admin"
           template "templates/active_admin/emails.rb", "app/admin/emails.rb"
         end
-      end
 
-      def copy_locale;  end
-
-      def check_migration_exists
-
+        if Gem::Specification::find_all_by_name('devise').any?
+          STDOUT << "devise mailer"
+          template "templates/devise/custom_devise_mailer.rb", "app/mailers/custom_devise_mailer.rb"
+        end
       end
     end
   end

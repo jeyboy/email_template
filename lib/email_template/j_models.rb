@@ -17,7 +17,11 @@ module JModels
         attrs.stringify_keys!
         body.gsub(/\#{.*?}/) do |match|
           elem, action = match[2..-2].split('.')
-          attrs[elem].try(action.to_sym) rescue match.to_s
+          if (action)
+            attrs[elem].try(action.to_sym) rescue match.to_s
+          else
+            attrs[elem] || match.to_s
+          end
         end
       }.call(attrs)
     end
@@ -28,6 +32,7 @@ module JModels
 
     def as_text(attrs={})
       strip_tags(prepare(attrs))
+      #sanitize(prepare(attrs), :tags => %w(a), :attributes => %w(href))
     end
 
     def prepare_fields
@@ -67,8 +72,16 @@ module JModels
 
     def find_methods(classname, object)
       object.public_instance_methods.each_with_object([]) do |m_alias, ret|
-        (ret << obj(classname, m_alias.to_s.from(3))) if m_alias.to_s.start_with?("et_")
+        (ret << obj(classname, m_alias.to_s.from(methods_header.length))) if m_alias.to_s.start_with?(methods_header)
       end
+    end
+
+    def find_devise_methods(object)
+      res = []
+      res << obj("confirmation_token")    if object.respond_to? :confirmation_token
+      res << obj("reset_password_token")  if object.respond_to? :reset_password_token
+      res << obj("unlock_token")          if object.respond_to? :unlock_token
+      res
     end
 
     private
