@@ -5,8 +5,8 @@ EmailTemplate.setup do |config|
   # Accepts args as Hash and as Array
 
   # Ignore token list for columns
-  #config.columns_black_list = ["t", "i", "k"]
-  #config.columns_black_list = {'*' => ["t", "i", "k"], "some_object" => ["j"]}
+  #config.columns_black_list = ["_at", "id"]
+  #config.columns_black_list = {'*' => ["_at", "id"], "some_object" => ["complete"]}
 
   # Ignore token list for attributes
   #config.attributes_black_list = []
