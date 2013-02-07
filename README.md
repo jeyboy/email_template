@@ -46,9 +46,17 @@ Config common settings in
     config/initializers/email_template.rb
     
     Settings include the following items:
-        columns_black_list - the following tokens symbolize the list of filters which limits the output of the object table fields list as a constants list for template. 
+        columns_black_list - the following tokens symbolize the list of filters which limits the output of
+        the object table fields list as a constants list for template. 
         
-        attributes_black_list - the following tokens symbolize the list of filters which limits the output of the object attributes list as a constants list for template
+        attributes_black_list - the following tokens symbolize the list of filters which limits the output
+        of the object attributes list as a constants list for template
+        
+        Black lists accept as value the following types: array and hash. In array case filters will be applied to the all objects.
+        In hash case you'll have an ability to put filters for all objects (use '*' key) and every separate object.
+        For example: 
+            columns_black_list = ['_at', '_id']
+            columns_black_list = {'*' => ['_at', '_id'], 'user' => ['created_at']}
         
         methods_header - this option enables filter on objects functions that will be shown in the editor.
         That means what if we set value 'et_' at methods_header - methods which start with this value 
