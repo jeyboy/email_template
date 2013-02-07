@@ -22,6 +22,20 @@ Or install it yourself as:
 Run installer:
 
     $ rails g email_template:install
+    
+For using Devise templates you need to run the following commands: 
+    Install:
+    
+        email_template:devise_install
+
+    The generating of common devise templates for a specified scope: 
+      
+    email_template:devise_templates <devise_scope>
+    
+    This generator produces email templates with the names:
+            <devise_scope>_mailer:confirmation_instructions
+            <devise_scope>_mailer:reset_password_instructions
+            <devise_scope>_mailer:unlock_instructions
 
 Run:
 
@@ -31,15 +45,15 @@ Config common settings in
 
     config/initializers/email_template.rb
     
-    Settings includes next items:
-        columns_black_list - present list of filters for column names of table, that linked to the object, used in template.
+    Settings include the following items:
+        columns_black_list - the following tokens symbolize the list of filters which limits the output of the object table fields list as a constants list for template. 
         
-        attributes_black_list - present list of filters for object attributes.
+        attributes_black_list - the following tokens symbolize the list of filters which limits the output of the object attributes list as a constants list for template
         
-        methods_header - this option is enable filter on functions of the objects that will be shown in the editor.
-        That mean what if we set value 'et_' at methods_header - methods which starts with this value 
+        methods_header - this option enables filter on objects functions that will be shown in the editor.
+        That means what if we set value 'et_' at methods_header - methods which start with this value 
         automatically will be added to possible template list of constants.
-        For example: if object have next methods or aliases: 'et_month', 'get_month', 'set_year' - 
+        For example: if object has the following methods or aliases: 'et_month', 'get_month', 'set_year' - 
         filter will return only 'et_month' method.
 
 Pull template to the base :
@@ -65,7 +79,7 @@ In Mailer:
 
 ## Customization
 
-In case when you need additional customization :
+In case you need additional customization :
 
 In Mailer:
     
