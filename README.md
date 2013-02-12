@@ -33,6 +33,7 @@ The generating of common devise templates for a specified scope:
     email_template:devise_templates <devise_scope>
     
 This generator produces email templates with the names:
+
     <devise_scope>_mailer:confirmation_instructions
     <devise_scope>_mailer:reset_password_instructions
     <devise_scope>_mailer:unlock_instructions
