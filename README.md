@@ -1,7 +1,7 @@
 # EmailTemplate
 
 Gem allows to develop e-mail templates with the ability of their following reduction using the tags
-related to template`s objects. One of the reduction abilities is active admin.
+related to template`s objects. One of the reduction abilities is active admin. Allow templating for Devise.
 
 ## Installation
 
@@ -26,16 +26,16 @@ Run installer:
 For using Devise templates you need to run the following commands: 
     Install:
     
-        email_template:devise_install
-
-    The generating of common devise templates for a specified scope: 
+    email_template:devise_install
+        
+The generating of common devise templates for a specified scope: 
       
     email_template:devise_templates <devise_scope>
     
-    This generator produces email templates with the names:
-            <devise_scope>_mailer:confirmation_instructions
-            <devise_scope>_mailer:reset_password_instructions
-            <devise_scope>_mailer:unlock_instructions
+This generator produces email templates with the names:
+    <devise_scope>_mailer:confirmation_instructions
+    <devise_scope>_mailer:reset_password_instructions
+    <devise_scope>_mailer:unlock_instructions
 
 Run:
 
@@ -45,24 +45,25 @@ Config common settings in
 
     config/initializers/email_template.rb
     
-    Settings include the following items:
-        columns_black_list - the following tokens symbolize the list of filters which limits the output of
-        the object table fields list as a constants list for template. 
-        
-        attributes_black_list - the following tokens symbolize the list of filters which limits the output
-        of the object attributes list as a constants list for template
-        
-        Black lists accept as value the following types: array and hash. In array case filters will be applied to the all objects.
-        In hash case you'll have an ability to put filters for all objects (use '*' key) and every separate object.
-        For example: 
-            columns_black_list = ['_at', '_id']
-            columns_black_list = {'*' => ['_at', '_id'], 'user' => ['created_at']}
-        
-        methods_header - this option enables filter on objects functions that will be shown in the editor.
-        That means what if we set value 'et_' at methods_header - methods which start with this value 
-        automatically will be added to possible template list of constants.
-        For example: if object has the following methods or aliases: 'et_month', 'get_month', 'set_year' - 
-        filter will return only 'et_month' method.
+Settings include the following items:
+
+    columns_black_list - the following tokens symbolize the list of filters which limits the output of
+    the object table fields list as a constants list for template. 
+    
+    attributes_black_list - the following tokens symbolize the list of filters which limits the output
+    of the object attributes list as a constants list for template
+    
+    Black lists accept as value the following types: array and hash. In array case filters will be applied to the all objects.
+    In hash case you'll have an ability to put filters for all objects (use '*' key) and every separate object.
+    For example: 
+        columns_black_list = ['_at', '_id']
+        columns_black_list = {'*' => ['_at', '_id'], 'user' => ['created_at']}
+    
+    methods_header - this option enables filter on objects functions that will be shown in the editor.
+    That means what if we set value 'et_' at methods_header - methods which start with this value 
+    automatically will be added to possible template list of constants.
+    For example: if object has the following methods or aliases: 'et_month', 'get_month', 'set_year' - 
+    filter will return only 'et_month' method.
 
 Pull template to the base :
 
