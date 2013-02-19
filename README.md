@@ -1,7 +1,7 @@
 # EmailTemplate
 
-Gem allows to develop e-mail templates with the ability of their following reduction using the tags
-related to template`s objects. One of the reduction abilities is active admin. Allow templating for Devise.
+Allow your users to edit e-mail templates.
+With devise and active admin support (but you don't need them to start using email_template).
 
 ## Installation
 
@@ -13,7 +13,7 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+Or just:
 
     $ gem install email_template
 
@@ -26,11 +26,11 @@ Run installer:
 For using Devise templates you need to run the following commands: 
     Install:
     
-    email_template:devise_install
+    $ rails g email_template:devise_install
         
-The generating of common devise templates for a specified scope: 
+Then generate common devise templates for a specified scope: 
       
-    email_template:devise_templates <devise_scope>
+    $ rails g email_template:devise_templates <devise_scope>
     
 This generator produces email templates with the names:
 
@@ -42,7 +42,7 @@ Run:
 
     $ rake db:migrate
 
-Config common settings in 
+You can configure email_template at
 
     config/initializers/email_template.rb
     
