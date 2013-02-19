@@ -23,7 +23,8 @@ Run installer:
 
     $ rails g email_template:install
     
-For using Devise templates you need to run the following commands: 
+In order to use Devise templates you need to install devise wrapper:
+
     Install:
     
     $ rails g email_template:devise_install
