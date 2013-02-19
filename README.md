@@ -1,6 +1,6 @@
 # EmailTemplate
 
-Allow your users to edit e-mail templates.
+Allows your users to edit e-mail templates.
 With devise and active admin support (but you don't need them to start using email_template).
 
 ## Installation
