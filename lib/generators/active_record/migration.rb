@@ -11,6 +11,6 @@ class AddMailsTemplate < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :mail_templates
+    drop_table :email_templates
   end
 end

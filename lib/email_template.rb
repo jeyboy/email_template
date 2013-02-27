@@ -2,8 +2,8 @@ require "email_template/j_models"
 require "email_template/j_mailers"
 require "email_template/j_helpers"
 
-include JModels
-include JMailers
+include EmailTemplate::JModels
+include EmailTemplate::JMailers
 include EmailTemplate::Mailers::Helpers
 
 module EmailTemplate
