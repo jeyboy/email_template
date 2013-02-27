@@ -1,5 +1,5 @@
 require "email_template/linkable/devise"
-include Linkable::DeviseMailer
+include EmailTemplate::Linkable::DeviseMailer
 
 class CustomDeviseMailer < DeviseTemplateSendMailer
   def confirmation_instructions(record, opts={})
