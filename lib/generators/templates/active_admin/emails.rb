@@ -1,6 +1,6 @@
-ActiveAdmin.register MailTemplate, :as => "Mail Template" do
-  config.sort_order = "name_asc"
-  #config.batch_actions = false #uncomment this if you need batches
+ActiveAdmin.register MailTemplate, :as => 'Mail Template' do
+  config.sort_order = 'name_asc'
+  config.batch_actions = false #comment this if you need batches
 
   filter :subject, as: :select, collection: proc { MailTemplate.all.map(&:subject) }
 
@@ -21,8 +21,8 @@ ActiveAdmin.register MailTemplate, :as => "Mail Template" do
 
   sidebar :email_objects, :only => :edit do
     raw([
-        "You may use next constants :",
-        "<br/><br/>",
+        'You may use next constants :',
+        '<br/><br/>',
         ("<div>#{resource.prepare_fields.join("</div><div>")}</div>")
         ].join)
   end
@@ -30,7 +30,7 @@ ActiveAdmin.register MailTemplate, :as => "Mail Template" do
   form do |f|
     f.inputs do
       f.input :subject
-      f.input :body, :as => :rich  #, :as => :rich  # You may use this flag if you have installed gem 'rich'
+      f.input :body  #, :as => :rich  # You may use this flag if you have installed gem 'rich'
     end
     f.actions
   end

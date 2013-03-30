@@ -3,7 +3,7 @@ module EmailTemplate
     class DeviseTemplatesGenerator < Rails::Generators::NamedBase
       attr_reader :bodies
 
-      desc "Create devise basic templates for input scope"
+      desc 'Create devise basic templates for input scope'
       def initialize(args, *options)
         super
         @bodies = {}

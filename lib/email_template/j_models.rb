@@ -79,9 +79,9 @@ module EmailTemplate
 
       def find_devise_methods(object)
         res = []
-        res << obj("confirmation_token")    if object.respond_to? :confirmation_token
-        res << obj("reset_password_token")  if object.respond_to? :reset_password_token
-        res << obj("unlock_token")          if object.respond_to? :unlock_token
+        res << obj('confirmation_token')    if object.respond_to? :confirmation_token
+        res << obj('reset_password_token')  if object.respond_to? :reset_password_token
+        res << obj('unlock_token')          if object.respond_to? :unlock_token
         res
       end
 

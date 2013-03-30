@@ -1,4 +1,4 @@
-require "email_template/linkable/devise"
+require 'email_template/linkable/devise'
 include EmailTemplate::Linkable::DeviseMailer
 
 class CustomDeviseMailer < DeviseTemplateSendMailer

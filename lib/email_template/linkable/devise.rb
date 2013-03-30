@@ -2,7 +2,7 @@ module EmailTemplate
   module Linkable
     module DeviseMailer
       class DeviseTemplateSendMailer < Devise::Mailer
-        require "email_template/linkable/devise_helper"
+        require 'email_template/linkable/devise_helper'
         include EmailTemplate::Linkable::DeviseMailerHelper
         include ActionView::Helpers::UrlHelper
         include Devise::Mailers::Helpers

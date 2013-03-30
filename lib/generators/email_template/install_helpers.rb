@@ -14,7 +14,7 @@ module EmailTemplate
       end
 
       def migration_path
-        @migration_path ||= File.join("db", "migrate")
+        @migration_path ||= File.join('db', 'migrate')
       end
     end
   end

@@ -1,6 +1,6 @@
-require "email_template/j_models"
-require "email_template/j_mailers"
-require "email_template/j_helpers"
+require 'email_template/j_models'
+require 'email_template/j_mailers'
+require 'email_template/j_helpers'
 
 include EmailTemplate::JModels
 include EmailTemplate::JMailers
@@ -12,7 +12,7 @@ module EmailTemplate
   mattr_accessor :attributes_black_list
   self.attributes_black_list = []
   mattr_accessor :methods_header
-  self.methods_header = "et_"
+  self.methods_header = 'et_'
 
   def self.setup
     yield self
