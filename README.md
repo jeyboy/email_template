@@ -86,6 +86,23 @@ class ActivityPartnerMailer < TemplateSendMailer
 end
 ```
 
+## Configuration
+    If you need adding some model method to token list need create in model alias with prefix,
+    which you set in config(by default is 'et_').
+    
+    For example if you need add method 'full_name' for 'activity_partner' to token list you need do next:
+
+```ruby
+class ActivityPartner < ActiveRecord::Base
+    def full_name
+        [self.first_name, self.last_name].join(' ')
+    end
+
+    alias et_full_name full_name
+end
+```
+    
+
 ## Customization
 
 In case you need additional customization :
