@@ -14,6 +14,6 @@ EmailTemplate.setup do |config|
 
   #######################################
 
-  # Method header for object methods selecting. By default eql "et_"
+  # Method header for object methods which will be output in usable tokens list. By default eql "et_"
   #config.methods_header = "et_"
 end
