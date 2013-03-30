@@ -3,6 +3,7 @@ EmailTemplate.setup do |config|
   #############Whitelists################
 
   # Accepts args as Hash and as Array
+  #if column name or attribute contains one of listened pieces - it will be ignore in output list
 
   # Ignore token list for columns
   #config.columns_black_list = ["_at", "id"]
