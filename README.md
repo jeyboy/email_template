@@ -64,7 +64,7 @@ You can configure email_template at
 Pull template to the base :
 
 ```ruby
-MailTemplate.create(name: "activity_partner_mailer:join_confirmation_self",
+MailTemplate.create(name: "template unique name",
                     subject: "Join request confirmation",
                     classes: ["activity_partner"],
                     body:
@@ -81,7 +81,7 @@ In Mailer:
 class ActivityPartnerMailer < TemplateSendMailer
   def join_confirmation_self(activity_partner)
     #send_mail(template_name, mail_params = {}, template_params = {})
-    send_mail("#{self.class.name.tableize.singularize}:#{__method__}", {to: "user@example.com"}, {activity_partner_join: activity_partner})
+    send_mail("template unique name", {to: "user@example.com"}, {activity_partner_: activity_partner})
   end
 end
 ```
