@@ -86,29 +86,49 @@ class ActivityPartnerMailer < TemplateSendMailer
 end
 ```
 
+## Configuration
+    If you need adding some model method to token list need create in model alias with prefix,
+    which you set in config(by default is 'et_').
+    
+    For example if you need add method 'full_name' for 'activity_partner' to token list you need do next:
+
+```ruby
+class ActivityPartner < ActiveRecord::Base
+    def full_name
+        [self.first_name, self.last_name].join(' ')
+    end
+
+    alias et_full_name full_name
+end
+```
+    
+
 ## Customization
 
 In case you need additional customization :
 
 In Mailer:
+    Simply add 'template_path' and 'template_name'
 
 ```ruby   
-class CustomDeviseMailer < Devise::Mailer
-  include Devise::Mailers::Helpers
-  include EmailTemplate::Mailers::Helpers
-    
-  def confirmation_instructions(record, opts={})
-    @template = check_template("#{record.class.name.tableize.singularize}_mailer:#{__method__}")
-    devise_mail(record, :confirmation_instructions, opts.merge(subject: @template.subject))
+class MyMailer < TemplateSendMailer
+
+  def result(tree)
+    send_mail('MyMailer:result', 
+    {
+        to: my_email,
+        template_path: 'mailers',
+        template_name: 'mail'
+    }, {tree: tree})
   end
-end    
+end
 ```
 
 In View:
+    In view you will have compiled template in @data variable
 
 ```ruby
-= raw(@template.as_html(:parent => @resource).gsub(/\#\{confirm_link\}/,
-link_to('Confirm my account', confirmation_url(@resource, confirmation_token: @resource.confirmation_token))))
+= @data.html_safe
 ```
 
 ## Contributing
