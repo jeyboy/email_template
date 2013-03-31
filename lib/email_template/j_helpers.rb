@@ -12,6 +12,7 @@ module EmailTemplate
         mail_params.reverse_merge!(subject: template.subject)
 
         if mail_params.has_key?(:template_path) && mail_params.has_key?(:template_name)
+          @data = template.as_html(template_params)
           mail mail_params
         else
           mail mail_params do |format|

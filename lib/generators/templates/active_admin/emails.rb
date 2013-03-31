@@ -20,11 +20,10 @@ ActiveAdmin.register MailTemplate, :as => 'Mail Template' do
   end
 
   sidebar :email_objects, :only => :edit do
-    raw([
-        'You may use next constants :',
-        '<br/><br/>',
-        ("<div>#{resource.prepare_fields.join("</div><div>")}</div>")
-        ].join)
+    table_for([]) do
+      tr { td 'You may use next constants : ' }
+      resource.prepare_fields.each { |item| tr { td item} }
+    end
   end
 
   form do |f|
