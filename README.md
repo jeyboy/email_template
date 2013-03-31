@@ -108,24 +108,27 @@ end
 In case you need additional customization :
 
 In Mailer:
+    Simply add 'template_path' and 'template_name'
 
 ```ruby   
-class CustomDeviseMailer < Devise::Mailer
-  include Devise::Mailers::Helpers
-  include EmailTemplate::Mailers::Helpers
-    
-  def confirmation_instructions(record, opts={})
-    @template = check_template("#{record.class.name.tableize.singularize}_mailer:#{__method__}")
-    devise_mail(record, :confirmation_instructions, opts.merge(subject: @template.subject))
+class MyMailer < TemplateSendMailer
+
+  def result(tree)
+    send_mail('MyMailer:result', 
+    {
+        to: my_email,
+        template_path: 'mailers',
+        template_name: 'mail'
+    }, {tree: tree})
   end
-end    
+end
 ```
 
 In View:
+    In view you will have compiled template in @data variable
 
 ```ruby
-= raw(@template.as_html(:parent => @resource).gsub(/\#\{confirm_link\}/,
-link_to('Confirm my account', confirmation_url(@resource, confirmation_token: @resource.confirmation_token))))
+= @data.html_safe
 ```
 
 ## Contributing
