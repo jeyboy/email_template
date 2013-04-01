@@ -2,7 +2,7 @@ module EmailTemplate
   module Linkable
     module DeviseMailerHelper
       def link_head(record)
-        "#{ActionMailer::Base.default_url_options[:host]}/#{record.class.name.tableize.singularize}"
+        "#{ActionMailer::Base.default_url_options[:protocol] || 'http'}://#{ActionMailer::Base.default_url_options[:host]}/#{record.class.name.tableize}"
       end
 
       def sending(record, action, template_name, email_opts = {}, template_opts = {})
