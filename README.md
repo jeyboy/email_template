@@ -36,6 +36,13 @@ In order to use Devise templates you need to install devise wrapper:
 ```sh
 $ rails g email_template:devise_install
 ```
+and update configuration for devise
+
+```ruby
+Devise.setup do |config|
+   config.mailer = "CustomDeviseMailer"
+end
+```
         
 Then generate common devise templates for a specified scope: 
    
