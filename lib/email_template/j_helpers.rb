@@ -4,7 +4,12 @@ module EmailTemplate
 
     protected
       def check_template(template_name)
-        throw "#{template_name} not set" if (@template = MailTemplate.where(name: template_name).first).blank?
+        if EmailTemplate.test_mode
+          @template = MailTemplate.new(name: template_name, subject: template_name, body: template_name, classes: [])
+        else
+          throw "#{template_name} not set" if (@template = MailTemplate.where(name: template_name).first).blank?
+        end
+
         @template
       end
 
