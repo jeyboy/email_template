@@ -138,6 +138,17 @@ In View:
 = @data.html_safe
 ```
 
+## Testing
+
+In your test_helper.rb add
+```ruby
+EmailTemplate.test_mode = true
+```
+
+Test mode creates automatically templates by request and fills body and subject by using the field 'name'.
+Please notice this by testing email sending in test mode.
+
+
 ## Contributing
 
 1. Fork it
